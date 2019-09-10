@@ -5,5 +5,5 @@
 
 I've created this repository to store interesting projects I've worked on related to Data Storage and Retrieval.
 
-Work will include SQLite, PostgreSQL, MongoDB, and Hbase.
+Work will include Python, SQLite, PostgreSQL, MongoDB, and Hbase.
 
