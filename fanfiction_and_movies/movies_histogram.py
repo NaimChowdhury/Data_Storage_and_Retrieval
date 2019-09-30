@@ -39,7 +39,10 @@ def asterisk_plot(dictionary):
     for i in dictionary.keys():
         output = ''
         times = dictionary[i]
-        while( times > 0)
+        while( times > 0):
             output += '*'
             times = times -1
-        print(output)
+        print(dictionary[i], " : ", output)
+
+asterisk_plot(histogram)
+
