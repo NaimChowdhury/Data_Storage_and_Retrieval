@@ -33,4 +33,13 @@ for film in titles:
     else:
         histogram[name_len] = histogram[name_len] +1
 
-plt.bar(histogram.keys(), histogram.values(), width, color='g')
+print("The number of occurrences for each title length is: ", histogram)
+
+def asterisk_plot(dictionary):
+    for i in dictionary.keys():
+        output = ''
+        times = dictionary[i]
+        while( times > 0)
+            output += '*'
+            times = times -1
+        print(output)
