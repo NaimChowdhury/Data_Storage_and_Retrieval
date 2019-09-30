@@ -12,6 +12,24 @@ cur = conn.cursor()
 
 # executes the following query in psql
 cur.execute("select title from movies limit 10;")
-title = cur.fetchall()
+# titles stores the result of the query as an array filled with tuples
+titles = cur.fetchall()
 
-# print(title)
+# 'histogram is a dictionary that will have a key for each potenial'
+# 'number of words in a film title' 
+histogram = {}
+
+# each film in titles is a 2-tuple with an empty second element
+for film in titles:
+    # print(film[0])
+    # stores the name of each film as an array with an element for each word
+    film_str = str.split(film)
+    # stores the number of words in the title
+    name_len = len(film_str)
+
+    if name_len not in histogram:
+        histogram.update( {name_len : 1} )
+    else:
+        histogram[name_len] = histogram[name_len] +1
+
+print(histogram)
