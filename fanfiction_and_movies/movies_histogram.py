@@ -27,9 +27,10 @@ for film in titles:
     # stores the number of words in the title
     name_len = len(film_str)
 
+    # if the dictionary key doesn't already exist, make it.
     if name_len not in histogram:
         histogram.update( {name_len : 1} )
     else:
         histogram[name_len] = histogram[name_len] +1
 
-print(histogram)
+plt.bar(histogram.keys(), histogram.values(), width, color='g')
