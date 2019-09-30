@@ -23,7 +23,7 @@ histogram = {}
 for film in titles:
     # print(film[0])
     # stores the name of each film as an array with an element for each word
-    film_str = str.split(film)
+    film_str = str.split(film[0])
     # stores the number of words in the title
     name_len = len(film_str)
 
