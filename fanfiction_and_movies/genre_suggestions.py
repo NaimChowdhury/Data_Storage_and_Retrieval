@@ -35,7 +35,7 @@ while results == []:
 lev_dist = 3
 
 # If the first query does not find their movie, this while loop will search using an increasing levenshtein distance
-while query2 == 'no':
+while query2 == 'no' and lev_dist < 7:
     lev_dist += + 1
     cur.execute("SELECT title, levenshtein FROM (SELECT title, levenshtein(title, '"+query+"') levenshtein FROM movies) levenbois WHERE levenshtein < "+str(lev_dist)+" ;")
     results2 = cur.fetchall()
@@ -45,7 +45,6 @@ while query2 == 'no':
     for i in resembling2:
         print(i)
     query2 = input("Please type the name of the film, or 'no'. ")
-    query = query2
 
 # Now that the movie has likely been found, the program searches for the genre cube datatype
 if query2 is not 'no' or query2 is not '' or results is not []:
