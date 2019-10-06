@@ -12,7 +12,19 @@ while query== '':
 
 # Initiates the cursor object in psql
 cur= conn.cursor()
-cur.execute("select genre from movies where title='"+query+"';")
+cur.execute("SELECT genre FROM movies WHERE title='"+query+"';")
 # Captures the results of the query in an array of tuples.
 results = cur.fetchall()
 #print(results)
+
+while results == []:
+    cur.execute("SELECT title FROM movies WHERE LOWER(title) like LOWER('"+query+"');")
+    results = cur.fetchall()
+    # stores the first entry of each tuple in results as in a list
+    resembling = [toople[0] for toople in results]
+    print("I'm sorry, we could not find a film of that name. Did you mean any of the following?")
+    # for loop prints films that resemble the input query
+    for i in resembling:
+        print(i)
+    query2 = ("Please type the name of the film, or 'no'. ")
+    
