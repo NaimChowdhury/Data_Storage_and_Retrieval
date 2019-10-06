@@ -19,7 +19,8 @@ results = cur.fetchall()
 #print(results)
 
 while results == []:
-    cur.execute("SELECT title FROM movies WHERE LOWER(title) like LOWER('"+query+"');")
+    cur.execute("SELECT title FROM movies where (SELECT show_trgm('"+query+"')) && (SELECT show_trgm(title)) ORDER BY levenshtein('"+query+"',title) limit 5;")
+    # cur.execute("SELECT title FROM movies WHERE LOWER(title) like LOWER('"+query+"');")
     results = cur.fetchall()
     # stores the first entry of each tuple in results as in a list
     resembling = [toople[0] for toople in results]
@@ -28,3 +29,4 @@ while results == []:
     for i in resembling:
         print(i)
     query2 = input("Please type the name of the film, or 'no'. ")
+    
