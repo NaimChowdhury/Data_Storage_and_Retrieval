@@ -31,11 +31,11 @@ while results == []:
     query2 = input("Please type the name of the film, or 'no'. ")
 
 # instantiates a distance counter that will iterate each time "no" is entered
-lev_dist = 1
+lev_dist = 3
 
 while query2 == 'no':
     lev_dist += + 1
-    cur.execute("SELECT title, levenshtein FROM (SELECT title, levenshtein(title, '"+query2+"') levenshtein FROM movies) levenbois WHERE levenshtein < "+str(lev_dist)+" ;")
+    cur.execute("SELECT title, levenshtein FROM (SELECT title, levenshtein(title, '"+query+"') levenshtein FROM movies) levenbois WHERE levenshtein < "+str(lev_dist)+" ;")
     results2 = cur.fetchall()
     resembling2 = [toople[0] for toople in results2]
     print("Hmmm. How about any of these? It had better be in this list. ")
