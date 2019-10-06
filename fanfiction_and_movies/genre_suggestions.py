@@ -1,5 +1,6 @@
 import sys
 import psycopg2
+import time
 
 
 print("Welcome to Jeeda and Naeem's film search program! Connecting to the film database.")
@@ -22,9 +23,8 @@ while results == []:
     results = cur.fetchall()
     # stores the first entry of each tuple in results as in a list
     resembling = [toople[0] for toople in results]
-    print("I'm sorry, we could not find a film of that name. Did you mean any of the following?")
+    print("We're sorry, we could not find a film of that name. Did you mean any of the following?")
     # for loop prints films that resemble the input query
     for i in resembling:
         print(i)
     query2 = ("Please type the name of the film, or 'no'. ")
-    
