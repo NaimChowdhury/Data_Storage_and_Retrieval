@@ -6,8 +6,9 @@ import time
 print("Welcome to Jeeda and Naeem's film search program! Connecting to the film database.")
 # Connects to the movies database on the NCF server.
 conn= psycopg2.connect("dbname=movies user=nchowdhury")
-time.sleep(3)
+time.sleep(1.5)
 query = input ("Please enter the name of a film (case sensitive): ")
+query2 = query
 while query == '':
         query= input ("No input detected. Please remember how to type, and enter the name of a film (case sensitive): ")
 
@@ -33,6 +34,7 @@ while results == []:
 # instantiates a distance counter that will iterate each time "no" is entered
 lev_dist = 3
 
+# If the first query does not find their movie, this while loop will search using an increasing levenshtein distance
 while query2 == 'no':
     lev_dist += + 1
     cur.execute("SELECT title, levenshtein FROM (SELECT title, levenshtein(title, '"+query+"') levenshtein FROM movies) levenbois WHERE levenshtein < "+str(lev_dist)+" ;")
@@ -43,3 +45,10 @@ while query2 == 'no':
     for i in resembling2:
         print(i)
     query2 = input("Please type the name of the film, or 'no'. ")
+    query = query2
+
+# Now that the movie has likely been found, the program searches for the genre cube datatype
+if query2 is not 'no' or query2 is not '' or results is not []:
+    cur.execute("SELECT genre FROM movies WHERE title = '"+query2+"';")
+    genre = cur.fetchall()
+    print(genre)
