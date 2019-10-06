@@ -51,4 +51,15 @@ while query2 == 'no':
 if query2 is not 'no' or query2 is not '' or results is not []:
     cur.execute("SELECT genre FROM movies WHERE title = '"+query2+"';")
     genre = cur.fetchall()
-    print(genre)
+    if genre == []:
+        print("We're sorry. We could not find a genre for that title. Restart our glorious application and try again.")
+    else:
+        genre_cube = genre[0][0]  #scoop up the genre cube from the tuple in list
+        cur.execute("SELECT title, genre FROM movies WHERE cube_distance(genre,'"+genre_cube+"') < 7;")
+        titletoops= cur.fetchall()
+        titles = [toople[0] for toople in titletoops]
+        print("Here are some films we thought you would like, based on the genre of the title you chose! Enjoy! ", titles)
+        for title in titles:
+            print (title)
+            time.sleep(.5)
+        print("All done. Enjoy your films!")
