@@ -22,3 +22,8 @@ print(query)
 
 cur = conn.cursor()
 
+cur.execute("SELECT title, description FROM stories WHERE title ~* '"+query+"' ORDER
+BY random() LIMIT 10;")
+results = cur.fetchall()
+print(results)
+
